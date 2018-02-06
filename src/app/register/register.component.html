@@ -1,0 +1,83 @@
+<br>
+<br>
+<div class="container">
+  <form class="form-horizontal" #registerer="ngForm" novalidate>
+
+    <div class="col-md- 5 col-md-offset-5">
+      <div class="form-group" [class.has-error]="fname.invalid && fname.dirty">
+        <label for="Prefered Vendor" class="col-sm-4 control-label">first name:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="fname" placeholder="first name" #fname="ngModel"
+           [(ngModel)]="ayaj.fname" minlength="3" maxlength="10"  required>
+          <div *ngIf="fname.invalid && fname.dirty">firstname is required..!</div>
+          </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="lname.invalid && lname.dirty">
+        <label for="Vendor Billing Address" class="col-sm-4 control-label">last name:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="lname" placeholder="last name" #lname="ngModel"
+          [(ngModel)]="ayaj.lname" minlength="3" maxlength="10"  required>
+          <div *ngIf="lname.invalid && lname.dirty">lastname is required...!</div>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="DOB.invalid && DOB.dirty">
+        <label for="Vendor Billing Address" class="col-sm-4 control-label">Date Of Birth:</label>
+        <div class="col-sm-6">
+          <input type="date" class="form-control" name="DOB" placeholder="dd-mm-yyyy" #DOB="ngModel"
+           [(ngModel)]="ayaj.DOB" required>
+           <div *ngIf="DOB.invalid && DOB.dirty">Date of Birth is required.....</div>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="email.invalid && email.dirty">
+        <label for="Vendor Billing Address" class="col-sm-4 control-label">email:</label>
+        <div class="col-sm-6">
+          <input type="email" class="form-control" name="email" placeholder="Enter-email" #email="ngModel"
+           [(ngModel)]="ayaj.email" required>
+           <div *ngIf="email.invalid && email.dirty">email is required.....</div>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="pass.invalid && pass.dirty">
+        <label for="password" class="col-sm-4 control-label">password:</label>
+        <div class="col-sm-6">
+          <input type="password" class="form-control" name="pass" placeholder="Enter-password" #pass="ngModel"
+           [(ngModel)]="ayaj.pass"  pattern="[A-Za-z]{4}" required>
+           <div *ngIf="pass.invalid && pass.dirty">pasword is required....</div>
+        </div>
+      </div>
+      <div class="form-group" [class.has-error]="num.invalid && num.dirty">
+          <label for="password" class="col-sm-4 control-label">MobileNumber:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="num" placeholder="Enter-password" #num="ngModel"
+             [(ngModel)]="ayaj.num"  required>
+             <div *ngIf="num.invalid && num.dirty">mobilenumber is required....</div>
+          </div>
+        </div>
+
+      <div class="form-group" [class.has-error]="camp.invalid && camp.dirty">
+        <label for="Vendor Billing Address" class="col-sm-4 control-label">Select Campus:</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="ayaj.camp" name="camp" #camp="ngModel" required>
+              <option [ngValue]="undefined"> Select campus</option>
+              <option *ngFor="let a of campus">{{a.type}}</option>
+              <div *ngIf="camp.invalid && camp.dirty">please select campus</div>
+              
+            </select>
+            
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-5">
+          <button class="btn btn-success" type="submit" (click)="register()">submit</button>
+          <button class="btn btn-danger" type="reset">cancel</button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{{ayaj|json}}

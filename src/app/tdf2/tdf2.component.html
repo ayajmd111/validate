@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>User Data</h2>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+        <div class="col-md-4">
+            
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" #nameRe="ngModel" minlength="4" required class="form-control" name="name" ngModel>
+            <div *ngIf="nameRe.errors && (nameRe.dirty || nameRe.touched)" class="alert alert-danger">
+                <div [hidden]="!nameRe.errors.required">
+                please enter a name
+              </div>
+          <div [hidden]="!nameRe.error.minlength">
+            please enter atleast 4 character
+                </div>
+             </div>  
+        </div>
+        
+        <div class="form-group">
+                <label>Email:</label>
+                <input type="text"   class="form-control" minlength="4" maxlength="8" name="email" ngModel>
+                <!-- <b>{{nameref.className}}</b> -->
+                <div [hidden]="nameRe.valid || nameRe.pristine" class="alert alert-danger">
+                    please enter email
+                </div>
+                </div>
+
+            <div ngModelGroup="Address">
+                    <div class="form-group">
+                            <label>Street:</label>
+                            <input type="text" class="form-control" minlength="4" name="street" ngModel>
+                        </div>
+                        <div class="form-group">
+                                <label>city:</label>
+                                <input type="text" class="form-control" name="city" ngModel>
+                            </div>
+                            <div class="form-group">
+                                    <label>PostalCode:</label>
+                                    <input type="text" #refpincode="ngModel" class="form-control" pattern="^[1-9][0-9]{5}$" name="post" ngModel>
+                                    <div *ngIf="refpincode.errors && (refpincode.dirty || refpincode.touched)" class="alert alert-danger">
+                                        <div [hidden]="!refpincode.errors.pattern">
+                                        please enter a 5 numbers only
+                                      </div>
+                                  <!-- <div [hidden]="!refpincode.error.minlength">
+                                    please enter atleast 4 character
+                                        </div> -->
+                                     </div>
+
+                                </div>
+
+            </div>
+
+                        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
